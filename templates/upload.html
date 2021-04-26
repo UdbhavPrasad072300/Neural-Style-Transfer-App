@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+<title>Neural Style Transfer Preview</title>
+</head>
+
+<body>
+
+<div align="center">
+
+<h1>Neural Style Transfer with VGG Network</h1>
+<h4>By, Udbhav Prasad</h4>
+
+</div>
+
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="content" multiple="false" autocomplete="off" required>
+		</p>
+    </dl>
+    <dl>
+		<p>
+			<input type="file" name="style" multiple="false" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+
+{% if filenames %}
+	{% for filename in filenames %}
+		<div>
+			<img src="{{ url_for('display_image', filename=filename) }}">
+		</div>
+	{% endfor %}
+{% endif %}
+
+{% if img_data %}
+
+<img id="picture" src="data:image/jpeg;base64,{{ img_data }}">
+
+{% endif %}
+
+</body>
+
+</html>
