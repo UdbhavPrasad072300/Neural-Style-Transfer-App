@@ -2,45 +2,107 @@
 <html>
 
 <head>
-<title>Neural Style Transfer Preview</title>
+    <title>Neural Style Transfer Preview</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/basic.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
 </head>
 
 <body>
 
-<div align="center">
+<div class="container">
+    <div class="row" align="center">
+        <h1>Neural Style Transfer with VGG Network</h1>
+        <h4>By, Udbhav Prasad</h4>
+    </div>
 
-<h1>Neural Style Transfer with VGG Network</h1>
-<h4>By, Udbhav Prasad</h4>
+    <div class="row">
+        <p>
+	        {% with messages = get_flashed_messages() %}
+	            {% if messages %}
+		            <ul class=flashes>
+		                {% for message in messages %}
+		                    <li>{{ message }}</li>
+		                {% endfor %}
+		            </ul>
+	            {% endif %}
+	        {% endwith %}
+        </p>
+    </div>
 
-</div>
+    <form method="post" action="/" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-6">
+                <p>
+                    <h3>Upload your Content Image</h3>
+                    <div>
+                        <label class="ui icon button">
+                            <input type="file" id="file" name="content" multiple="false" required/>
+                            Upload File
+                        </label>
+                    </div>
+                </p>
+            </div>
 
-<p>
-	{% with messages = get_flashed_messages() %}
-	  {% if messages %}
-		<ul class=flashes>
-		{% for message in messages %}
-		  <li>{{ message }}</li>
-		{% endfor %}
-		</ul>
-	  {% endif %}
-	{% endwith %}
-</p>
+            <div class="col-sm-6">
+                <p>
+                    <h3>Upload your Style Image</h3>
+			        <div>
+                        <label class="ui icon button">
+                            <input type="file" id="file" name="style" multiple="false" required/>
+                            Upload File
+                        </label>
+                    </div>
+                </p>
+            </div>
+        </div>
 
-<form method="post" action="/" enctype="multipart/form-data">
-    <dl>
-		<p>
-			<input type="file" name="content" multiple="false" autocomplete="off" required>
-		</p>
-    </dl>
-    <dl>
-		<p>
-			<input type="file" name="style" multiple="false" autocomplete="off" required>
-		</p>
-    </dl>
-    <p>
-		<input type="submit" value="Submit">
-	</p>
-</form>
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Enter Alpha</h3>
+                <div class="ui input">
+                    <input name="alpha" type="number" value="0.5" min="0" max="1" step="0.1" placeholder="ALPHA">
+                </div>
+
+                <h3>Enter Beta</h3>
+                <div class="ui input">
+                    <input name="beta" type="number" value="0.5" min="0" max="1" step="0.1" placeholder="BETA">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Enter Number of Epoches</h3>
+                <div class="ui input">
+                    <input name="epochs" type="number" value="1000" min="1" max="100000" placeholder="Num. Epochs">
+                </div>
+
+                <h3>Enter Learning Rate</h3>
+                <div class="ui input">
+                    <input name="lr" type="number" value="0.001" max="1" placeholder="LR">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <br>
+            <div class="col-sm-12">
+                <p>
+                    <button type="submit" value="Submit" class="ui button">Submit</button>
+                </p>
+            </div>
+            <br>
+        </div>
+
+    </form>
 
 {% if filenames %}
 	{% for filename in filenames %}
@@ -55,6 +117,15 @@
 <img id="picture" src="data:image/jpeg;base64,{{ img_data }}">
 
 {% endif %}
+
+    <div class="row">
+        <hr>
+        <footer class="footer">
+            Udbhav Prasad. All Rights Reserved
+        </footer>
+    </div>
+
+</div>
 
 </body>
 
