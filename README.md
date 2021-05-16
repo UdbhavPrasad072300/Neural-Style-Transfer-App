@@ -28,4 +28,4 @@ Some Images produced with the model
 
 ![produced image 2](./static/images/generate2.png)
 
-![produced image 1](./static/images/generate1.png)
+![produced image 1](./static/images/generate3.png)
