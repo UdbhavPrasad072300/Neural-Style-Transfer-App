@@ -24,8 +24,8 @@ python app.py
 
 Some Images produced with the model
 
-![produced image 3](https://github.com/UdbhavPrasad072300/Neural-Style-Transfer-App/tree/main/static/images/generate3.png)
+![produced image 3](./static/images/generate1.png)
 
-![produced image 2](https://github.com/UdbhavPrasad072300/Neural-Style-Transfer-App/tree/main/static/images/generate2.png)
+![produced image 2](./static/images/generate2.png)
 
-![produced image 1](https://github.com/UdbhavPrasad072300/Neural-Style-Transfer-App/tree/main/static/images/generate1.png)
+![produced image 1](./static/images/generate1.png)
